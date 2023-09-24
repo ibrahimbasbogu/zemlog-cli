@@ -203,7 +203,7 @@ const CreateConsignment = () => {
         return obj
     }
     const handleCreateOrder = () => {
-        post("http://zemlog-api.test/api/user/shipments", objHelperForService()).
+        post("https://api.zemlog.com/api/user/shipments", objHelperForService()).
             then(async (res) => {
                 await Swal.fire({
                     position: 'top-end',
@@ -234,18 +234,18 @@ const CreateConsignment = () => {
         setProducts(miniArr)
     }
     const getCountryList = () => {
-        get(`http://zemlog-api.test/api/country`).then(res => {
+        get(`https://api.zemlog.com/api/country`).then(res => {
             setCountryList(res)
         })
     }
     const getStateListTo = (data) => {
-        get(`http://zemlog-api.test/api/state?country_id=${data}`).then(res => {
+        get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
             console.log(data);
             setStateListTo(res)
         })
     }
     const getStateListFrom = (data) => {
-        get(`http://zemlog-api.test/api/state?country_id=${data}`).then(res => {
+        get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
             console.log(data);
             setStateListFrom(res)
         })

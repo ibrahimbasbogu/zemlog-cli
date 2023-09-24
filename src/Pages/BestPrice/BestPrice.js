@@ -991,7 +991,7 @@ const BestPrice = () => {
         getUserList()
     }, [priceType, user])
     const getUserList = () => {
-        get(`http://zemlog-api.test/api/user`).then(res => {
+        get(`https://api.zemlog.com/api/user`).then(res => {
             setUserList(res)
         })
     }
@@ -1002,9 +1002,9 @@ const BestPrice = () => {
 
         let url;
         if (user == '*') {
-            url = `http://zemlog-api.test/api/best-price?type=${data ? data : priceType}`
+            url = `https://api.zemlog.com/api/best-price?type=${data ? data : priceType}`
         } else {
-            url = `http://zemlog-api.test/api/best-price?type=${data ? data : priceType}&user_id=${Number(user)}`
+            url = `https://api.zemlog.com/api/best-price?type=${data ? data : priceType}&user_id=${Number(user)}`
         }
         get(url).then(async (res) => {
             if(!res){
@@ -1047,7 +1047,7 @@ const BestPrice = () => {
         setLoad(false)
         let bigObj = {}
 
-        post(`http://zemlog-api.test/api/best-price`, { datas: Object.values(obj), eph: Number(ephValue), yakit: Number(yakitEk), type: Number(priceType), user_id: user }).then(res => {
+        post(`https://api.zemlog.com/api/best-price`, { datas: Object.values(obj), eph: Number(ephValue), yakit: Number(yakitEk), type: Number(priceType), user_id: user }).then(res => {
             setEphValue(res.eph)
             setYakitEk(res.yakit)
             setUser(user ? user : '*')

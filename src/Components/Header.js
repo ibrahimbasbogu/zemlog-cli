@@ -9,7 +9,7 @@ import get from "../services/get";
 const Header = () => {
     const [isAdmin, setIsAdmin] = useState(false)
     useEffect(() => {
-        get(`http://zemlog-api.test/api/user/profile`).then(res => setIsAdmin(res.is_admin))
+        get(`https://api.zemlog.com/api/user/profile`).then(res => setIsAdmin(res.is_admin))
     }, [])
     return (
         <header>

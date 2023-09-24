@@ -35,7 +35,7 @@ const Login = () => {
         })
     }
     const handleLogin = () => {
-        post("http://zemlog-api.test/api/auth/login", form).then(res => {
+        post("https://api.zemlog.com/api/auth/login", form).then(res => {
             localStorage.setItem('token', res.token)
             navigate({ pathname: "/" })
         }).catch(err => console.log('armagan'))

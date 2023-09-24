@@ -24,7 +24,7 @@ const Register = () => {
         })
     }
     const handleRegister = () => {
-        post("http://zemlog-api.test/auth/user/registration", form).then(res => {
+        post("https://api.zemlog.com/auth/user/registration", form).then(res => {
             navigate({ pathname: '/login' })
         }).catch(err => console.log('armagan'))
 

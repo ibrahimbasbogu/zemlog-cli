@@ -19,7 +19,7 @@ const Calculate = () => {
     useEffect(() => { getCountryList() }, [])
     useEffect(() => { setDesi() }, [form])
     const getCountryList = () => {
-        get(`http://zemlog-api.test/api/country`).then(res => {
+        get(`https://api.zemlog.com/api/country`).then(res => {
             setCountryList(res)
         })
     }
@@ -78,7 +78,7 @@ const Calculate = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-end">
-                    <button onClick={() => get(`http://zemlog-api.test/api/get-offer?country_id=${form.country}&desi=${handleDesi()}`).then(res => {
+                    <button onClick={() => get(`https://api.zemlog.com/api/get-offer?country_id=${form.country}&desi=${handleDesi()}`).then(res => {
                         setResPrice(res)
                     })} class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Hesapla</button>
                 </div>

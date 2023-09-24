@@ -12,7 +12,7 @@ const Order = () => {
     const [meta, setMeta] = useState([])
     useEffect(() => { getOrders() }, [])
     const getOrders = (value = false) => {
-        get(`http://zemlog-api.test/api/user/shipments?page=${value ? value : page}`,).then(res => {
+        get(`https://api.zemlog.com/api/user/shipments?page=${value ? value : page}`,).then(res => {
             setData(res.data)
             setMeta(res.meta.pagination)
         }
@@ -62,7 +62,7 @@ const Order = () => {
                                             </td>
                                             <td class="px-6 py-4">
                                                 <File size={18} style={{ cursor: 'pointer' }} onClick={async () => {
-                                                    await get(`http://zemlog-api.test/api/user/shipments-label?trackNumber=${item.trackingNumber}`, localStorage.getItem('token')).then(res => {
+                                                    await get(`https://api.zemlog.com/api/user/shipments-label?trackNumber=${item.trackingNumber}`, localStorage.getItem('token')).then(res => {
                                                         handleButtonClick(res.base64_image_file)
                                                     })
                                                 }} />
