@@ -53,8 +53,10 @@ const CreateConsignment = () => {
             'hsCode': '',
         }
     ])
+    const [load, setLoad] = useState(false)
     useEffect(() => {
         getCountryList()
+        setLoad(true)
     }, [])
     const handleIncrement = () => {
         setNumber(number + 1);
@@ -94,7 +96,7 @@ const CreateConsignment = () => {
         }
         let arr = products
         let miniArr = []
-        setProducts(arr.map((item, index) => {
+        setProducts(arr?.map((item, index) => {
             if (index == index1) {
                 miniArr.push(obj)
             }
@@ -226,7 +228,7 @@ const CreateConsignment = () => {
     const deleteButton = (id) => {
         let arr = products
         let miniArr = []
-        arr.map((item, index) => {
+        arr?.map((item, index) => {
             if (index != id) {
                 miniArr.push(item)
             }
@@ -235,23 +237,21 @@ const CreateConsignment = () => {
     }
     const getCountryList = () => {
         get(`https://api.zemlog.com/api/country`).then(res => {
-            setCountryList(res)
+            setCountryList(res.data)
         })
     }
     const getStateListTo = (data) => {
         get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
-            console.log(data);
-            setStateListTo(res)
+            setStateListTo(res.data)
         })
     }
     const getStateListFrom = (data) => {
         get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
-            console.log(data);
-            setStateListFrom(res)
+            setStateListFrom(res.data)
         })
     }
     return (
-        <div className="d-flex flex-column">
+        load && <div className="d-flex flex-column">
             <Header />
             <div className="m-4 border rounded shadow-lg p-5">
                 <form className="border rounded shadow-md p-5 m-1">
@@ -273,7 +273,7 @@ const CreateConsignment = () => {
                         <div class="relative z-0 w-full mb-6 group">
                             <label for="shipFrom.state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gönderen Şehir</label>
                             <select id="shipFrom.state" name="shipFrom.state" disabled={form.shipFrom.country.length == 0} value={form.shipFrom.state} onChange={handleInput} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {stateListFrom.map(item => {
+                                {stateListFrom?.map(item => {
                                     return (
                                         <option value={item.iso}>{item.title}</option>
                                     )
@@ -299,7 +299,8 @@ const CreateConsignment = () => {
                                 getStateListFrom(miniId.id)
 
                             }} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {countryList.map(item => {
+                                {console.log(countryList)}
+                                {countryList?.map(item => {
                                     return (
                                         <option value={item.iso}>{item.title}</option>
                                     )
@@ -338,7 +339,7 @@ const CreateConsignment = () => {
                         <div class="relative z-0 w-full mb-6 group">
                             <label for="shipTo.state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alıcı Şehir</label>
                             <select id="shipTo.state" name="shipTo.state" disabled={form.shipTo.country.length == 0} value={form.shipTo.state} onChange={handleInput} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {stateListTo.map(item => {
+                                {stateListTo?.map(item => {
                                     return (
                                         <option value={item.iso}>{item.title}</option>
                                     )
@@ -364,7 +365,7 @@ const CreateConsignment = () => {
                                 getStateListTo(miniId.id)
 
                             }} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {countryList.map(item => {
+                                {countryList?.map(item => {
                                     return (
                                         <option value={item.iso}>{item.title}</option>
                                     )

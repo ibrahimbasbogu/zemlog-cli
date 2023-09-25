@@ -988,7 +988,7 @@ const BestPrice = () => {
     const [rawData, setRawData] = useState([])
     useEffect(() => {
         getPrices()
-        getUserList()
+      //  getUserList()
     }, [priceType, user])
     const getUserList = () => {
         get(`https://api.zemlog.com/api/user`).then(res => {
@@ -1051,7 +1051,7 @@ const BestPrice = () => {
             setEphValue(res.eph)
             setYakitEk(res.yakit)
             setUser(user ? user : '*')
-            res.datas.map(item => {
+            res.datas?.map(item => {
                 let obj = { [item.data]: item }
                 bigObj = { ...bigObj, ...obj }
             })
@@ -1063,10 +1063,10 @@ const BestPrice = () => {
 
     }
     const renderObj = (obj1) => {
-        return Object.keys(obj1).map((kgName, kgNameIndex) => {
+        return Object.keys(obj1)?.map((kgName, kgNameIndex) => {
             return (
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    {Object.keys(obj1[kgName]).map((kgValue, index) => {
+                    {Object.keys(obj1[kgName])?.map((kgValue, index) => {
                         return (
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <input

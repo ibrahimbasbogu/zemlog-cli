@@ -20,7 +20,7 @@ const Calculate = () => {
     useEffect(() => { setDesi() }, [form])
     const getCountryList = () => {
         get(`https://api.zemlog.com/api/country`).then(res => {
-            setCountryList(res)
+            setCountryList(res.data)
         })
     }
     const handleInput = (event) => {
@@ -48,7 +48,7 @@ const Calculate = () => {
                 <div class="relative z-0 w-full mb-6 group">
                     <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ship To Country</label>
                     <select id="country" value={form.country} onChange={handleInput} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        {countryList.map(countryItem => {
+                        {countryList?.map(countryItem => {
                             return (
                                 <option value={countryItem.id}>{countryItem.title}</option>
                             )
