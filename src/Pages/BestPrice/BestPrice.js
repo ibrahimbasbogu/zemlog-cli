@@ -988,7 +988,7 @@ const BestPrice = () => {
     const [rawData, setRawData] = useState([])
     useEffect(() => {
         getPrices()
-      //  getUserList()
+        getUserList()
     }, [priceType, user])
     const getUserList = () => {
         get(`https://api.zemlog.com/api/user`).then(res => {
