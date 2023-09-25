@@ -20,7 +20,7 @@ const Calculate = () => {
     useEffect(() => { setDesi() }, [form])
     const getCountryList = () => {
         get(`https://api.zemlog.com/api/country`).then(res => {
-            setCountryList(res.data)
+            setCountryList(res)
         })
     }
     const handleInput = (event) => {

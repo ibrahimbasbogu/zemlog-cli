@@ -85,7 +85,6 @@ const CreateConsignment = () => {
             'skuCode': '',
             'hsCode': '',
         }])
-        console.log('prod', products)
     }
     const handleProduct = (event, index1) => {
         const { name, value, id } = event.target;
@@ -237,17 +236,18 @@ const CreateConsignment = () => {
     }
     const getCountryList = () => {
         get(`https://api.zemlog.com/api/country`).then(res => {
-            setCountryList(res.data)
+            console.log(res)
+            setCountryList(res)
         })
     }
     const getStateListTo = (data) => {
         get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
-            setStateListTo(res.data)
+            setStateListTo(res)
         })
     }
     const getStateListFrom = (data) => {
         get(`https://api.zemlog.com/api/state?country_id=${data}`).then(res => {
-            setStateListFrom(res.data)
+            setStateListFrom(res)
         })
     }
     return (
@@ -299,7 +299,6 @@ const CreateConsignment = () => {
                                 getStateListFrom(miniId.id)
 
                             }} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {console.log(countryList)}
                                 {countryList?.map(item => {
                                     return (
                                         <option value={item.iso}>{item.title}</option>
